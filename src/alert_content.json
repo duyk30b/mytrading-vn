@@ -1,0 +1,26 @@
+{
+    "passphrase": "somelongstring123",
+    "time": "{{timenow}}",
+    "exchange": "{{exchange}}",
+    "ticker": "{{ticker}}",
+    "bar": {
+        "time": "{{time}}",
+        "open": "{{open}}",
+        "high": "{{high}}",
+        "low": "{{low}}",
+        "close": "{{close}}",
+        "volume": "{{volume}}"
+    },
+    "Strateg": {
+        "position_size": "{{Strateg.position_size}}",
+        "order_action": "{{Strateg.order.action}}",
+        "order_contuces": "{{Strateg.order.contuces}}",
+        "order_price": "{{Strateg.order.price}}",
+        "order_id": "{{Strateg.order.id}}",
+        "order_comment": "{{Strateg.order.comment}}",
+        "market_poseition": "{{Strateg.market_poseition}}",
+        "market_poseition_size": "{{Strateg.market_poseition_size}}",
+        "prev_market_poseition": "{{Strateg.prev_market_poseition}}",
+        "prev_market_poseition_size": "{{Strateg.prev_market_poseition_size}}"
+    }
+}
