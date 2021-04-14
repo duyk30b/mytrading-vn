@@ -9,7 +9,7 @@ app.get('/', (req, res) =>{
     res.send('Hello World, This is mytrading-vn homepage')
 })
 
-app.post('/', (req, res) =>{
+app.post('/tradingview', (req, res) =>{
     console.log(req.body);
     res.send({'testJson':'succes'})
 })
