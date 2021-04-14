@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>MyTrading</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+		<script src="socket.io/socket.io.js"></script>
+		<script>
+			let socket = io(location.origin);
+			socket.on('Server_Send_Data', function (data) {
+				alert("Have a new Alert from Tradingview")
+				document.getElementById('content').innerHTML += `
+                            <td>${data.time}</td>
+                            <td>${data.exchange}</td>
+                            <td>${data.ticker}</td>
+                            <td>${data.bar.time}</td>
+                            <td>${data.bar.open}</td>
+                            <td>${data.bar.high}</td>
+                            <td>${data.bar.low}</td>
+                            <td>${data.bar.close}</td>
+                            <td>${data.bar.volume}</td>
+                `;
+			});
+		</script>
+	</head>
+	<body>
+        
+		<div class="container">
+            <h3>TradingView alert</h3>
+			<table class="table">
+				<thead>
+					<th>TimeNow</th>
+					<th>Exchange</th>
+					<th>Ticker</th>
+					<th>Time</th>
+					<th>Open</th>
+					<th>High</th>
+					<th>Low</th>
+					<th>Close</th>
+					<th>Volume</th>
+				</thead>
+				<tbody id="content"></tbody>
+			</table>
+		</div>
+	</body>
+</html>
