@@ -53,12 +53,23 @@ app.get('/', (req, res) => {
 	res.render('index');
 });
 
-app.get('/tradingview', (req, res) => {
-	res.render('tradingview');
+// app.get('/tradingview', (req, res) => {
+// 	res.render('tradingview');
+// });
+
+// app.post('/tradingview', (req, res) => {
+// 	//console.log(req.body);
+// 	io.sockets.emit('Server_Send_Data', req.body);
+// 	res.send({ response: 'success' });
+// });
+
+app.get('/:option', (req, res) => {
+	let emitSend = req.params.option + '_Server_Send_Data'
+	res.render('options', {emitSend: emitSend});
 });
 
-app.post('/tradingview', (req, res) => {
-	//console.log(req.body);
-	io.sockets.emit('Server_Send_Data', req.body);
+app.post('/:option', (req, res) => {
+	let emitSend = req.params.option + '_Server_Send_Data'
+	io.sockets.emit(emitSend, req.body);
 	res.send({ response: 'success' });
 });
