@@ -8,37 +8,37 @@ const io = require('socket.io')(server);
 server.listen(port, () => {
 	console.log('Domain listening at http://localhost:' + port);
 });
-io.on('connection', function (socket) {
-	console.log('Co nguoi ket noi: ' + socket.id);
+// io.on('connection', function (socket) {
+// 	console.log('Co nguoi ket noi: ' + socket.id);
 
-	//socket.join('Nodejs');
-	//console.log(socket.adapter.rooms);
+// 	//socket.join('Nodejs');
+// 	//console.log(socket.adapter.rooms);
 
-	socket.on('disconnect', function () {
-		console.log(socket.id + ': ngat ket noi !!!');
-	});
+// 	socket.on('disconnect', function () {
+// 		console.log(socket.id + ': ngat ket noi !!!');
+// 	});
 
-	socket.on('Client-Send-Data', function (data) {
-		console.log(socket.id + ' vua gui: ' + data);
-		//TH1: Gửi tất cả các client
-		io.sockets.emit('Server-send-data', data + '888');
-		//TH2: Gửi lại chính client
-		//socket.emit('Server-send-data', data + '888');
-		//TH3: Gửi tất cả các client trừ chính client gửi
-		//socket.broadcast.emit('Server-send-data', data + '888');
-		//TH4: Gửi tất cả các client trong 1 room nhất định, ví dụ rooms "NODEJS"
-		io.sockets.in('NODEJS').emit('Server-Send-Data', data + '888');
-	});
+// 	socket.on('Client-Send-Data', function (data) {
+// 		console.log(socket.id + ' vua gui: ' + data);
+// 		//TH1: Gửi tất cả các client
+// 		io.sockets.emit('Server-send-data', data + '888');
+// 		//TH2: Gửi lại chính client
+// 		//socket.emit('Server-send-data', data + '888');
+// 		//TH3: Gửi tất cả các client trừ chính client gửi
+// 		//socket.broadcast.emit('Server-send-data', data + '888');
+// 		//TH4: Gửi tất cả các client trong 1 room nhất định, ví dụ rooms "NODEJS"
+// 		io.sockets.in('NODEJS').emit('Server-Send-Data', data + '888');
+// 	});
 
-	socket.on('Join-Room', function (data) {
-		//Kiểm tra xem có room chưa, nếu chưa có thì tạo room, có rồi thì join
-		socket.join(data);
-	});
-	socket.on('Leave-Room', function (data) {
-		//Thoát room, nếu room còn 0 socket sẽ tự động xóa room
-		socket.leave(data);
-	});
-});
+// 	socket.on('Join-Room', function (data) {
+// 		//Kiểm tra xem có room chưa, nếu chưa có thì tạo room, có rồi thì join
+// 		socket.join(data);
+// 	});
+// 	socket.on('Leave-Room', function (data) {
+// 		//Thoát room, nếu room còn 0 socket sẽ tự động xóa room
+// 		socket.leave(data);
+// 	});
+// });
 
 //End Code socket io
 
@@ -56,12 +56,9 @@ app.get('/', (req, res) => {
 app.get('/tradingview', (req, res) => {
 	res.render('tradingview');
 });
+
 app.post('/tradingview', (req, res) => {
-	console.log(req.body);
+	//console.log(req.body);
 	io.sockets.emit('Server_Send_Data', req.body);
 	res.send({ response: 'success' });
 });
-
-// app.listen(port, () => {
-// 	console.log('Domain listening at http://localhost:' + port);
-// });
