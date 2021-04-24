@@ -31,16 +31,31 @@
 		<div class="container-fluid">
 			<div class="row">
 				<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-					<div class="sidebar-sticky pt-3">
-					</div>
+					<div class="sidebar-sticky pt-3"></div>
 				</nav>
 
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 					<div
 						class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
 					>
-						<a href="/tradingview" class="h3">TradingView</a>
+						<h4>TradingView</h4>
 					</div>
+					<p>Create a link for use Webhook on Alert of TradingView</p>
+					<p>
+						<span id="local_href"></span>
+						<input id="input_link" type="text" style="display: inline" />
+					</p>
+
+					<button id="actionLink">Set Link</button>
+
+					<script>
+						document.getElementById('local_href').innerHTML += location.href;
+
+						document.getElementById('actionLink').onclick = () => {
+							let url = location.href + document.getElementById('input_link').value;
+							window.open(url, '_self');
+						};
+					</script>
 				</main>
 			</div>
 		</div>
