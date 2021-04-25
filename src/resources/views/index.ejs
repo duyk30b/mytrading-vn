@@ -99,7 +99,7 @@
 						let ipPath = document.getElementById('input_path')
 						let btnDone = document.getElementById('btn_done')
 						aHref.innerText = location.href;
-						ipPath.onkeydown = () => {
+						ipPath.onkeyup = () => {
 							aHref.innerText = location.origin + '/' + ipPath.value
 							aHref.href = location.origin + '/' + ipPath.value
 						};
