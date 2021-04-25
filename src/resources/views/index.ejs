@@ -41,49 +41,72 @@
 						<h4>TradingView</h4>
 					</div>
 					<p>1. Create a link for use <bold>Webhook URL</bold> on Alert of TradingView</p>
-					<p>
-						<span id="local_href"></span>
-						<input id="input_link" type="text" style="display: inline" />
-					</p>
-					<button class="btn btn-primary mb-5" id="actionLink">Set Link</button>
+					<div class="form-group row">
+						<label for="inputEmail3" class="col-sm-2 col-form-label">- Insert Any word:</label>
+						<div class="col-sm-10">
+							<input
+								type="text"
+								class="form-control"
+								id="input_path"
+								placeholder="Example: tradingview-john2020"
+							/>
+						</div>
+					</div>
 
-					<p>2. Set content messenger on Alert of TradingView bellow: </p>
-					<pre style="border: 1px solid">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">- Your link webhook: </label>
+						<label class="col-sm-10 col-form-label"
+							><a id="local_href" href="http://localhost:3000/">http://localhost:3000/</a></label
+						>
+					</div>
+
+					<p>2. Set content messenger on Alert of TradingView bellow:</p>
+					<pre style="border: 1px solid; height: 250px">
 						{
 							"passphrase": "somelongstring123",
-							"time": "{{timenow}}",
-							"exchange": "{{exchange}}",
-							"ticker": "{{ticker}}",
+							"time": "{{ timenow }}",
+							"exchange": "{{ exchange }}",
+							"ticker": "{{ ticker }}",
 							"bar": {
-								"time": "{{time}}",
-								"open": "{{open}}",
-								"high": "{{high}}",
-								"low": "{{low}}",
-								"close": "{{close}}",
-								"volume": "{{volume}}"
+								"time": "{{ time }}",
+								"open": "{{ open }}",
+								"high": "{{ high }}",
+								"low": "{{ low }}",
+								"close": "{{ close }}",
+								"volume": "{{ volume }}"
 							},
 							"Strateg": {
-								"position_size": "{{Strateg.position_size}}",
-								"order_action": "{{Strateg.order.action}}",
-								"order_contuces": "{{Strateg.order.contuces}}",
-								"order_price": "{{Strateg.order.price}}",
-								"order_id": "{{Strateg.order.id}}",
-								"order_comment": "{{Strateg.order.comment}}",
-								"market_poseition": "{{Strateg.market_poseition}}",
-								"market_poseition_size": "{{Strateg.market_poseition_size}}",
-								"prev_market_poseition": "{{Strateg.prev_market_poseition}}",
-								"prev_market_poseition_size": "{{Strateg.prev_market_poseition_size}}"
+								"position_size": "{{ Strateg.position_size }}",
+								"order_action": "{{ Strateg.order.action }}",
+								"order_contuces": "{{ Strateg.order.contuces }}",
+								"order_price": "{{ Strateg.order.price }}",
+								"order_id": "{{ Strateg.order.id }}",
+								"order_comment": "{{ Strateg.order.comment }}",
+								"market_poseition": "{{ Strateg.market_poseition }}",
+								"market_poseition_size": "{{ Strateg.market_poseition_size }}",
+								"prev_market_poseition": "{{ Strateg.prev_market_poseition }}",
+								"prev_market_poseition_size": "{{ Strateg.prev_market_poseition_size }}"
 							}
 						}
-					</pre>
+					</pre
+					>
+					<div>
+						<button class="btn btn-primary mb-5" id="btn_done">Done</button>
+					</div>
 
 					<script>
-						document.getElementById('local_href').innerHTML += location.href;
-
-						document.getElementById('actionLink').onclick = () => {
-							let url = location.href + document.getElementById('input_link').value;
-							window.open(url, '_self');
+						let aHref = document.getElementById('local_href')
+						let ipPath = document.getElementById('input_path')
+						let btnDone = document.getElementById('btn_done')
+						aHref.innerText = location.href;
+						ipPath.onkeydown = () => {
+							aHref.innerText = location.origin + '/' + ipPath.value
+							aHref.href = location.origin + '/' + ipPath.value
 						};
+						btnDone.onclick = ()=>{
+							let url = aHref.innerText
+							window.open(url,'_blank');
+						}
 					</script>
 				</main>
 			</div>
